@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login Page</title>
+<link href="css/login.css" rel="stylesheet">
+</head>
+<body>
+
+<h2>Login Page</h2>
+
+<div class="container">
+
+      <form class="form-signin" method="post" action="login.php">
+        <h2 class="form-signin-heading">Please log in</h2>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Enter E-Mail" name="email" required />
+        <input type="password" id="inputPassword" class="form-control" placeholder="Enter Password" name="password" required />
+        <br />
+        <button type="submit" id="submitButton">Sign in</button>
+      </form>
+        <button onclick="document.getElementById('id01').style.display='block'" id="signupButton">Sign Up</button>
+    </div> <!-- /container -->
+
+
+<div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+  <form class="modal-content" action="signup.php">
+    <div class="container">
+      <h1>Sign Up</h1>
+      <p>Please fill in this form to create an account.</p>
+      <hr>
+      
+      <label id="labelFname" for="fname"><b>First Name</b></label>
+      <input type="text" id="enterFname" placeholder="Enter First Name" name="reg_lname" required>
+
+      <label id="labelLname" for="lname"><b>Last Name</b></label>
+      <input type="text" id="enterLname" placeholder="Enter Last Name" name="reg_lname" required>
+      
+      <label for="email"><b>Email</b></label>
+      <input type="email" id="enterEmail" placeholder="Enter Email" name="reg_email" required>
+     
+      <label id="labelBday" for="birthday"><b>Birthday</b></label>
+      <input type="date" id="enterBday" placeholder="Enter Birthday" name="reg_birthday" required>
+
+      <label id="labelGender" for="gender"><b>Gender</b></label>
+      <input type="text" id="enterGender" placeholder="Enter Gender" name="reg_gender" required>
+      
+      <label for="phone"><b>Phone Number</b></label>
+      <input type="tel" id="enterPhone" placeholder="Enter Phone Number" name="reg_phone" required>
+
+      <label for="password"><b>Password</b></label>
+      <input type="password" id="enterPassword" placeholder="Enter Password" name="reg_password" required>
+
+
+      <div class="clearfix">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        <button type="submit" class="signupbtn">Sign Up</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>
