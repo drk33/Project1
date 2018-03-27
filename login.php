@@ -14,45 +14,23 @@ try {
 $email=($_POST['email']);
 $password=($_POST['password']);
 
-$query = 'SELECT fName, lName 
+$query = 'SELECT fName, lName, password
           FROM drk33.accounts
-          WHERE email = :email and password = :password;';
-
-$count=mysql_fetch_array($result);
+          WHERE email = :email;';
 
 $statement = $db->prepare($query);
 $statement->bindValue(':email', $email);
-$statement->bindValue(':password', $password);
 $statement->execute();
-$accountinfo = $statement->fetchAll();
+$accountinfo = $statement->fetch();
 $statement->closeCursor(); 
-if(count($accountinfo)>0){
+if (count($accountinfo) > 1) {
   
-?>
-
-<html>
-<head>
-  <title>Post-Login</title>
-</head>
-
-<?php foreach ($accountinfo as $account) : ?>
-<html>
-<body>
-<table style="width:100%, border: 1px solid black">
-  <tr style="border: 1px solid black">
-    <th style="text-align:left">First Name</th>
-    <th style="text-align:left">Last Name</th>
-  </tr>
-  <tr style="border: 1px solid black">
-    <td><?php echo $account['fName']; ?></td>
-    <td><?php echo $account['lName']; ?></td>
-  </tr>
-</table>
-
-<?php 
-endforeach;
-} else {
-  echo 'Wrong Username or Password! Return to <a href="index.html">login</a>';
-  }
-
-?>
+if ($password == $accountinfo['password']) { 
+  echo $accountinfo['fName'] . ' ' . $accountinfo['lName'];
+} elseif ($password != $accountinfo['password']) {
+  echo 'Password is incorrect. <a href="index.html">Try again</a>'; }
+  else {
+  echo 'An error has occurred. <a href="index.html">Please try again</a>'; }}
+  else {
+  echo 'Account does not exist. <a href="index.html">Try signing up</a>'; }
+  ?>
