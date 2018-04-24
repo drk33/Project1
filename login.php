@@ -26,7 +26,7 @@ $statement->closeCursor();
 if (count($accountinfo) > 1) {
   
 if ($password == $accountinfo['password']) { 
-  echo $accountinfo['fName'] . ' ' . $accountinfo['lName'];
+  include 'todo.php';
 } elseif ($password != $accountinfo['password']) {
   echo 'Password is incorrect. <a href="index.html">Try again</a>'; }
   else {
