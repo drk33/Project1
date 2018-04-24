@@ -64,13 +64,13 @@ $smt->closeCursor();
     <td><?php echo $todo['message']; ?></td>
     <td><?php echo $todo['id']; ?></td>
     <td><?php echo $todo['duedate']; ?></td>
-    <td><button type="button" onclick="location.href = 'edit.php';" id="edit_btn" class="edit_btn">Edit</button></td>
-    <td><button type="button" onclick="location.href = 'complete.php';" id="complete_btn" class="complete_btn">Completed</button></td>
-    <td><button type="button" onclick="location.href = 'delete.php';" id="delete_btn" class="delete_btn">Delete</button></td>
+    <td><button type="button" onclick="location.href = 'edit.php?id=<?php echo $todo['id'];?>';" id="edit_btn" class="edit_btn">Edit</button></td>
+    <td><button type="button" onclick="location.href = 'complete.php?id=<?php echo $todo['id'];?>';" id="complete_btn" class="complete_btn">Completed</button></td>
+    <td><button type="button" onclick="location.href = 'delete.php?id=<?php echo $todo['id'];?>';" id="delete_btn" class="delete_btn">Delete</button></td>
   </tr>
 
 <?php endforeach;
-$qry = 'SELECT message
+$qry = 'SELECT message, id
           FROM drk33.todos
           WHERE owneremail = :email && isdone = 1 order by duedate asc;';
 $smt = $db->prepare($qry);
@@ -93,7 +93,7 @@ $smt->closeCursor();
   <tr>
     <td><?php echo $todo['message']; ?></td>
     <td></td>
-    <td><button type="button" onclick="location.href = 'delete.php';" id="delete_btn" class="delete_btn">Delete</button></td>
+    <td><button type="button" onclick="location.href = 'delete.php?id=<?php echo $todo['id'];?>';" id="delete_btn" class="delete_btn">Delete</button></td>
   </tr>
   <?php endforeach; ?>
 

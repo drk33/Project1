@@ -19,7 +19,7 @@ try {
 }
 $message = ($_POST['message']);
 $duedate = ($_POST['dueDate']);
-$id = ($_POST['ID']);
+$id = ($_GET['id']);
 $qry = "update drk33.todos
              set message = :message, dueDate = :dueDate where id = :id;";
 
@@ -31,13 +31,8 @@ $stmnt->execute();
 $stmnt->closeCursor(); 
 echo 'Task successfully added, return to <a href="todo.php">list.</a>';
 } else echo 'Please fill out the form'; ?>
-<form class="form-signin" method="post" action="edit.php">
+<form class="form-signin" method="post" action="edit.php?id=<?php echo $_GET['id'];?>">
         <h2 class="form-signin-heading">Create a new task</h2>
-        
-        <label id="labelID" for="ID"><b>Task ID</b></label>
-        <input type="number" id="inputMessage" class="form-control" placeholder="Enter task ID" name="ID" required />
-        
-        <br/>
         
         <label id="labelMessage" for="message"><b>Update description</b></label>
         <input type="text" id="inputMessage" class="form-control" placeholder="Update description" name="message" required />
